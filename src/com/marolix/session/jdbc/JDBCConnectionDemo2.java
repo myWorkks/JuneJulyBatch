@@ -18,7 +18,11 @@ public class JDBCConnectionDemo2 {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("establishing the connection");
-			connection = DriverManager.getConnection(url, username, password);
+			
+			
+				connection = DriverManager.getConnection(url, username, password);
+		
+			Thread.currentThread().stop();
 			System.out.println("connection established");
 
 			Statement statement = connection.createStatement();
@@ -40,8 +44,8 @@ public class JDBCConnectionDemo2 {
 			System.out.println("something went wrong");
 		} finally {
 			try {
-				if(connection!=null &&!connection.isClosed())
-				connection.close();
+				if (connection != null && !connection.isClosed())
+					connection.close();
 			} catch (SQLException e) {
 
 				e.printStackTrace();
